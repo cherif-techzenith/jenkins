@@ -21,6 +21,22 @@ pipeline{
             }
         }
 
+        stage("Security scan"){
+            steps{
+                echo "Running security scan..."
+                sh "npm audit --audit-level=high"
+                echo "Security scan completed successfully!"
+            }
+        }
+
+        stage("Test"){
+            steps{
+                echo "Running tests..."
+                sh "npm test"
+                echo "Tests completed successfully!"
+            }
+        }
+
 
         stage("Deploy"){
             steps{
