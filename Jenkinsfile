@@ -17,26 +17,31 @@ pipeline{
             steps{
                 echo "Installing dependencies..."
                 sh "npm install"
+                echo "Dependencies installed successfully!"
             }
         }
 
         stage("Security scan"){
             steps{
                 echo "Running security scan..."
-                // sh "npm audit --audit-level=high"
+                sh "npm audit --audit-level=high"
+                echo "Security scan completed successfully!"
             }
         }
 
         stage("Test"){
             steps{
                 echo "Running tests..."
-                // sh "npm test"
+                sh "npm test"
+                echo "Tests completed successfully!"
             }
         }
 
         stage("Build"){
             steps{
                 echo "Building Docker image..."
+                sh 'docker.build("test"+"$BUILD_NUMBER")'
+                echo "Docker image built successfully!"
                 // sh "docker build -t my-app ."
             }
         }
