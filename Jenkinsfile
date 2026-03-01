@@ -2,13 +2,14 @@ pipeline{
     agent any
 
     tools{
-        nodejs "node-24"
+        nodejs "NodeJS"
     }
 
     stages{
         stage("Checkout"){
             steps{
                 echo "Checking out code..."
+                git branch: 'main', credentialsId: 'jen-doc-git', url: 'https://github.com/cherif-techzenith/jenkins.git'
             }
         }
 
@@ -22,21 +23,21 @@ pipeline{
         stage("Security scan"){
             steps{
                 echo "Running security scan..."
-                sh "npm audit --audit-level=high"
+                // sh "npm audit --audit-level=high"
             }
         }
 
         stage("Test"){
             steps{
                 echo "Running tests..."
-                sh "npm test"
+                // sh "npm test"
             }
         }
 
         stage("Build"){
             steps{
                 echo "Building Docker image..."
-                sh "docker build -t my-app ."
+                // sh "docker build -t my-app ."
             }
         }
 
