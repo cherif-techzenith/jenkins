@@ -29,19 +29,19 @@ pipeline{
             }
         }
 
-        // stage("Test"){
-        //     steps{
-        //         echo "Running tests..."
-        //         sh "npm test"
-        //         echo "Tests completed successfully!"
-        //     }
-        // }
+        stage("Test"){
+            steps{
+                echo "Running tests..."
+                sh "npm test"
+                echo "Tests completed successfully!"
+            }
+        }
 
         stage("Build"){
             steps{
                 echo "Building Docker image..."
                 script{
-                    sh 'docker.build("test"+"$BUILD_NUMBER")'
+                    'docker.build("test"+"$BUILD_NUMBER")'
                 }
                 echo "Docker image built successfully!"
                 // sh "docker build -t my-app ."
