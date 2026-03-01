@@ -40,7 +40,9 @@ pipeline{
         stage("Build"){
             steps{
                 echo "Building Docker image..."
-                sh 'docker.build("test"+"$BUILD_NUMBER")'
+                script{
+                    sh 'docker.build("test"+"$BUILD_NUMBER")'
+                }
                 echo "Docker image built successfully!"
                 // sh "docker build -t my-app ."
             }
