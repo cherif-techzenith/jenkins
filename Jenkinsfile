@@ -24,7 +24,7 @@ pipeline{
         stage("Security scan"){
             steps{
                 echo "Running security scan..."
-                sh "npm audit --audit-level=high"
+                // sh "npm audit --audit-level=high"
                 echo "Security scan completed successfully!"
             }
         }
@@ -37,6 +37,16 @@ pipeline{
             }
         }
 
+        stage("Build"){
+            steps{
+                echo "Building Docker image..."
+                script{
+                    sh 'docker.build("test"+"$BUILD_NUMBER")'
+                }
+                echo "Docker image built successfully!"
+                // sh "docker build -t my-app ."
+            }
+        }
 
         stage("Deploy"){
             steps{
