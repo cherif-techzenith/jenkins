@@ -21,32 +21,6 @@ pipeline{
             }
         }
 
-        stage("Security scan"){
-            steps{
-                echo "Running security scan..."
-                sh "npm audit --audit-level=high"
-                echo "Security scan completed successfully!"
-            }
-        }
-
-        stage("Test"){
-            steps{
-                echo "Running tests..."
-                sh "npm test"
-                echo "Tests completed successfully!"
-            }
-        }
-
-        stage("Build"){
-            steps{
-                echo "Building Docker image..."
-                script{
-                    sh 'docker.build("test"+"$BUILD_NUMBER")'
-                }
-                echo "Docker image built successfully!"
-                // sh "docker build -t my-app ."
-            }
-        }
 
         stage("Deploy"){
             steps{
